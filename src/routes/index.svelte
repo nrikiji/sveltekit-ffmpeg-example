@@ -82,7 +82,11 @@
           <div class="sm:flex sm:flex-wrap md:py-4">
             <div class="px-4 lg:w-1/3">
               <ul class="text-sm">
-                <li class="my-4 block lg:hidden">※このアプリはiPhoneに対応していません</li>
+                <li class="my-1">※このアプリはiPhoneに対応していません</li>
+                <li class="my-1">※このアプリは10フレーム/1秒として画像を生成します</li>
+                <li class="my-1">
+                  ※このアプリのソースは<a class="underline" target="_blank" href="https://github.com/nrikiji/video-capture-web">こちら</a>
+                </li>
               </ul>
             </div>
           </div>
