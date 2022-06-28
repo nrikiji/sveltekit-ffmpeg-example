@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head prefix="og: https://ogp.me/ns#">
+    <meta charset="utf-8" />
+    <title>動画から写真</title>
+    <link rel="icon" href="%sveltekit.assets%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta property="og:url" content="https://video-capture-web.web.app/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="動画から写真・画像を作成する" />
+    <meta property="og:description" content="" />
+    <meta property="og:site_name" content="動画から写真" />
+    <meta property="og:image" content="https://video-capture-web.web.app/appicon.png" />
+    %sveltekit.head%
+    <!-- <script src="https://unpkg.com/@ffmpeg/ffmpeg@0.9.4/dist/ffmpeg.min.js"></script> -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-C4E2DQQMFP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'G-C4E2DQQMFP');
+    </script>
+  </head>
+  <body>
+    <div>%sveltekit.body%</div>
+  </body>
+</html>
