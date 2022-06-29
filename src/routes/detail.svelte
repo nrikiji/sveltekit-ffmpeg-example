@@ -13,11 +13,11 @@
   export let second: number;
 
   let no: number = 0;
-  let tmpNo: number = 0;
+  let tmp: number = 0;
 
   const { images, loading, create } = useDetail();
 
-  images.subscribe((_) => (no = tmpNo));
+  images.subscribe((_) => (no = tmp));
 
   $: {
     create(second);
@@ -25,7 +25,7 @@
 
   const previous = () => {
     if (no == 0) {
-      tmpNo = FPS - 1;
+      tmp = FPS - 1;
       second = second - 1;
     } else {
       no = no - 1;
@@ -34,7 +34,7 @@
 
   const next = () => {
     if (no == FPS - 1) {
-      tmpNo = 0;
+      tmp = 0;
       second = second + 1;
     } else {
       no = no + 1;
