@@ -7,7 +7,7 @@ export const useHome = () => {
   const { subscribe: subLoading, update: updLoading } = writable(false);
   const loadVideo = async (file: File) => {
     updLoading(() => true);
-    load(file);
+    await load(file);
     const images = await videoTo1FpsImages();
     updImages((_) => images);
     updLoading((_) => false);

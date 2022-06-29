@@ -70,6 +70,11 @@
     <div class="flex-grow flex h-full justify-center items-center">
       {#if $loading && $images.length == 0}
         <div class="absolute animate-spin h-10 w-10 border-4 border-blue-500 rounded-full border-t-transparent" />
+      {:else if !$loading && $images.length == 0}
+        <div>
+          動画の読み込みに失敗しました<br />
+          <a class="text-blue underline" href="/">こちら</a>からやり直してください。
+        </div>
       {:else}
         <button
           disabled={second == 0 && no == 0}
