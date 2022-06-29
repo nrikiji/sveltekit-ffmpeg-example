@@ -1,5 +1,5 @@
 import type { Handle } from '@sveltejs/kit';
-import config from '../svelte.config';
+import config from '../../svelte.config';
 import { dev } from '$app/env';
 
 /**

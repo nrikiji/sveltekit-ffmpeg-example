@@ -2,20 +2,20 @@ import { createFFmpeg, fetchFile } from '@ffmpeg/ffmpeg';
 import { timeFormat } from './util';
 import { FPS } from './const';
 
-const VIDEO_KEY = "video"
+const VIDEO_KEY = 'video';
 
 let ffmpeg = createFFmpeg({ log: true });
 ffmpeg.load();
 
 export const load = async (file: File) => {
   ffmpeg.FS('writeFile', VIDEO_KEY, await fetchFile(file));
-}
+};
 
 export const unlink = () => {
   ffmpeg.FS('unlink', VIDEO_KEY);
-}
+};
 
-export const convert1FPS = async (file: File) => {
+export const videoTo1FpsImages = async () => {
   let images: string[] = [];
   try {
     await ffmpeg.run('-i', VIDEO_KEY, '-vf', 'fps=1', 'out%d.png');
@@ -33,7 +33,7 @@ export const convert1FPS = async (file: File) => {
   return images;
 };
 
-export const convert10FPS = async (second: number, file: File) => {
+export const videoTo10FpsImages = async (second: number) => {
   let images: string[] = [];
   let start = timeFormat(second);
   let end = timeFormat(second + 1);

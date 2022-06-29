@@ -1,20 +1,15 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
   import { goto } from '$app/navigation';
   import { timeFormat } from '$lib/util';
-  import { convert1FPS, load, unlink } from '$lib/ffmpeg';
-  import { images, video } from '$lib/stores';
+  import { useHome } from '$lib/hooks';
   import FileDrop from 'filedrop-svelte';
 
-  let loading = false;
+  const { images, loading, loadVideo, clearVideo } = useHome();
 
   const fileChangeHandler = async (e: CustomEvent) => {
     if (e.detail && e.detail.files) {
-      let file = e.detail.files.accepted[0];
-      video.set(file);
-      await load(file);
-      loading = true;
-      $images = [...(await convert1FPS(file))];
-      loading = false;
+      loadVideo(e.detail.files.accepted[0]);
     }
   };
 </script>
@@ -28,20 +23,14 @@
         </div>
         {#if 0 < $images.length}
           <div class="px-0 lg:px-32">
-            <button
-              class="bg-white hover:bg-white lg:border border-gray-500 text-gray-600 py-2 lg:px-4 rounded-full"
-              on:click={() => {
-                images.set([]);
-                unlink();
-              }}
-            >
+            <button class="bg-white hover:bg-white lg:border border-gray-500 text-gray-600 py-2 lg:px-4 rounded-full" on:click={clearVideo}>
               リセット
             </button>
           </div>
         {/if}
       </div>
     </nav>
-    {#if loading}
+    {#if $loading}
       <div class="flex-grow flex flex-col justify-center items-center">
         <div class="animate-spin h-10 w-10 border-4 border-blue-500 rounded-full border-t-transparent" />
       </div>
@@ -61,12 +50,7 @@
     {:else}
       <div class="flex-grow flex flex-col justify-center items-center">
         <div class="max-w-xl bg-gray-50">
-          <FileDrop
-            accept=".mp4,.MOV"
-            on:filedrop={(e) => {
-              fileChangeHandler(e);
-            }}
-          >
+          <FileDrop accept=".mp4,.MOV" on:filedrop={fileChangeHandler}>
             <div
               class="flex justify-center w-full h-32 px-16 lg:px-32 transition bg-white border-2 border-gray-300 border-dashed rounded-md appearance-none cursor-pointer hover:border-gray-400 focus:outline-none"
             >
