@@ -1,4 +1,4 @@
-# video-capture-web
+# Svelteki-ffmpeg.wasm
 
 `SvelteKit`と`ffmpeg.wasm`で作ったサンプルアプリ
 
