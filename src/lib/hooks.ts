@@ -9,12 +9,12 @@ export const useHome = () => {
     updLoading(() => true);
     await load(file);
     const images = await videoTo1FpsImages();
-    updImages((_) => images);
-    updLoading((_) => false);
+    updImages(() => images);
+    updLoading(() => false);
   };
   const clearVideo = () => {
     unlink();
-    updImages((_) => []);
+    updImages(() => []);
   };
   return { images: { subscribe: subImages }, loading: { subscribe: subLoading }, loadVideo, clearVideo };
 };
@@ -25,8 +25,8 @@ export const useDetail = () => {
   const create = async (second: number) => {
     updLoading(() => true);
     const images = await videoTo10FpsImages(second);
-    updImages((_) => images);
-    updLoading((_) => false);
+    updImages(() => images);
+    updLoading(() => false);
   };
   return { images: { subscribe: subImages }, loading: { subscribe: subLoading }, create };
 };

@@ -1,7 +1,7 @@
 <script context="module" lang="ts">
   import type { Load } from '@sveltejs/kit';
   export const load: Load = ({ url }) => {
-    return { props: { second: Number(url.searchParams.get('s')) } };
+    return { props: { s: Number(url.searchParams.get('s')) } };
   };
 </script>
 
