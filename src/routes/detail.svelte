@@ -10,34 +10,34 @@
   import { timeFormat } from '$lib/util';
   import { useDetail } from '$lib/hooks';
 
-  export let second: number;
+  export let s: number;
 
-  let no: number = 0;
-  let tmp: number = 0;
+  let i = 0;
+  let j = 0;
 
   const { images, loading, create } = useDetail();
 
-  images.subscribe((_) => (no = tmp));
+  images.subscribe((_) => (i = j));
 
   $: {
-    create(second);
+    create(s);
   }
 
   const previous = () => {
-    if (no == 0) {
-      tmp = FPS - 1;
-      second = second - 1;
+    if (i == 0) {
+      j = FPS - 1;
+      s = s - 1;
     } else {
-      no = no - 1;
+      j = j - 1;
     }
   };
 
   const next = () => {
-    if (no == FPS - 1) {
-      tmp = 0;
-      second = second + 1;
+    if (i == FPS - 1) {
+      j = 0;
+      s = s + 1;
     } else {
-      no = no + 1;
+      i = i + 1;
     }
   };
 </script>
@@ -51,14 +51,14 @@
             戻る
           </button>
         </div>
-        <div class="text-lg text-gray-600">{timeFormat(second)}</div>
+        <div class="text-lg text-gray-600">{timeFormat(s)}</div>
         <div class="align-right px-0 lg:px-32">
           <button
             class="bg-white hover:bg-white lg:border border-gray-500 text-gray-600 py-2 lg:px-6 rounded-full"
             on:click={(e) => {
               let link = document.createElement('a');
-              link.href = $images[no];
-              link.download = timeFormat(second) + '.png';
+              link.href = $images[i];
+              link.download = timeFormat(s) + '.png';
               link.click();
             }}
           >
@@ -77,7 +77,7 @@
         </div>
       {:else}
         <button
-          disabled={second == 0 && no == 0}
+          disabled={s == 0 && i == 0}
           on:click={(e) => !$loading && previous()}
           class="-mr-5 hidden lg:block bg-white z-10 rounded-full shadow-md h-12 w-12 text-2xl text-indigo-600 hover:text-indigo-400 focus:text-indigo-400 -ml-6 focus:outline-none focus:shadow-outline  disabled:opacity-0"
         >
@@ -85,7 +85,7 @@
         </button>
         <div class="relative h-full">
           <img
-            src={$images[no]}
+            src={$images[i]}
             on:click={(e) => {
               if ($loading) return;
               e.pageX < window.innerWidth / 2 ? previous() : next();
@@ -100,7 +100,7 @@
           {/if}
         </div>
         <button
-          disabled={second == $images.length - 1 && no == $images.length - 1}
+          disabled={s == $images.length - 1 && i == $images.length - 1}
           on:click={(e) => !$loading && next()}
           class="-ml-5 hidden lg:block right-0 bg-white z-10 rounded-full shadow-md h-12 w-12 text-2xl text-indigo-600 hover:text-indigo-400 focus:text-indigo-400 -mr-6 focus:outline-none focus:shadow-outline disabled:opacity-0"
         >
