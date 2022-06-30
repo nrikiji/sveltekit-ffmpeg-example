@@ -1,4 +1,4 @@
-# svelteki-ffmpeg.wasm-example
+# svelteki-ffmpeg-example
 
 `SvelteKit`と`ffmpeg.wasm`で作ったサンプルアプリ
 
