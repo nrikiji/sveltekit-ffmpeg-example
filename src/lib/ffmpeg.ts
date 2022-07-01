@@ -38,7 +38,7 @@ export const videoTo10FpsImages = async (second: number) => {
   let start = timeFormat(second);
   let end = timeFormat(second + 1);
   try {
-    await ffmpeg.run('-i', VIDEO_KEY, '-ss', start, '-to', end, '-vf', 'fps=10', 'frame%d.png');
+    await ffmpeg.run('-ss', start, '-to', end, '-i', VIDEO_KEY, '-vf', 'fps=10', 'frame%d.png');
 
     for (let i = 1; i <= FPS; i++) {
       const data = ffmpeg.FS('readFile', 'frame' + i + '.png');
