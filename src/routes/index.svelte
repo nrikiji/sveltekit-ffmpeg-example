@@ -50,7 +50,7 @@
     {:else}
       <div class="flex-grow flex flex-col justify-center items-center">
         <div class="max-w-xl bg-gray-50">
-          <FileDrop accept=".mp4,.MOV" on:filedrop={fileChangeHandler}>
+          <FileDrop accept=".mp4,.MOV,.webm,.mkv" on:filedrop={fileChangeHandler}>
             <div
               class="flex justify-center w-full h-32 px-16 lg:px-32 transition bg-white border-2 border-gray-300 border-dashed rounded-md appearance-none cursor-pointer hover:border-gray-400 focus:outline-none"
             >
